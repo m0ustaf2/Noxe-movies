@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { MediaContext } from '../../Context/MediaStore';
@@ -7,7 +7,16 @@ import PaginationComp from '../Pagination/PaginationComp';
 
 
 
+
 export default function People() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);},[])
+
 let {trendingPersons}=useContext(MediaContext)
   return (
     
@@ -18,7 +27,7 @@ let {trendingPersons}=useContext(MediaContext)
                 <title>People</title>
                 
             </Helmet>
-   {trendingPersons.length>0? <div className="row py-4 gy-3">
+   {!isLoading?<div className="row py-4 gy-3">
        <div className="col-md-4">
         <div>
           <div className='brdr mb-3 w-25'></div>

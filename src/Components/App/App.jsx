@@ -12,6 +12,8 @@ import People from './../People/People';
 import Profile from './../Profile/Profile';
 import Register from './../Register/Register';
 import Tvshows from './../Tvshows/Tvshows';
+import { Offline } from 'react-detect-offline';
+import Disconnected from '../Disconnected/Disconnected';
 
 function App() {
  let{userData,saveUserData,logout}= useContext(AuthContext)
@@ -36,6 +38,8 @@ function App() {
   ])
   return (
     <>
+    <Offline><Disconnected/></Offline>
+
      <RouterProvider router={routes} />
       
      </>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
@@ -6,11 +6,19 @@ import { MediaContext } from './../../Context/MediaStore';
 import PaginationComp from './../Pagination/PaginationComp';
 
 export default function() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);},[])
+
+
 let {trendingMovies}=useContext(MediaContext)
   return (
  <>
 
- {trendingMovies.length>0? <div className="row py-4 gy-3">
+ { !isLoading ? <div className="row py-4 gy-3">
           <Helmet>
                 <meta charSet="utf-8" />
                 <title>Movies</title>
