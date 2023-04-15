@@ -32,30 +32,30 @@ function clearSearch(e)
       Noxe
     
       </Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="navbar-toggler bg-danger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon fa-beat"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
     {userData?  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
           <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
+        isActive?"bg-danger rounded nav-link" : "nav-link"  
         }
            to="/Noxe-movies">Home</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
+        isActive?"bg-danger rounded nav-link" : "nav-link"  
         } to="movies">Movies</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
+        isActive?"bg-danger rounded nav-link" : "nav-link"  
         } to="tvshows">Tv shows</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
+        isActive?"bg-danger rounded nav-link" : "nav-link"  
         } to="people">People</NavLink>
         </li>
       </ul>:''}
@@ -94,12 +94,12 @@ function clearSearch(e)
      :<>
        <li className="nav-item">
           <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
+        isActive?"bg-danger rounded nav-link" : "nav-link"  
         } to="login">Login</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
+        isActive?"bg-danger rounded nav-link" : "nav-link"  
         } to="register">Register</NavLink>
         </li>
      </>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MediaContext } from '../../Context/MediaStore';
 import Loading from '../Loading/Loading';
 import PaginationComp from '../Pagination/PaginationComp';
+import Items from '../Items/Items';
 
 
 
@@ -39,26 +40,8 @@ let {trendingPersons}=useContext(MediaContext)
         </div>
       </div> 
      {trendingPersons.slice(0,20).filter(ele=> ele.profile_path !==null ).map((item,index)=>(
-      <div key={index} className="col-sm-6 col-md-4 col-xl-2 col-6">
-     <Link className='nav-link' to={`/details/${item.id}/${item.media_type}`}>
-<div>
-    <div className="item position-relative overflow-hidden">
-      
-      <img className='w-100 rounded-2' src={`https://image.tmdb.org/t/p/original${item.profile_path}`} alt="Actor" />
-    
-        <div className="overlay  text-center">
-          <div className='mt-5'>{item.original_name}</div>
-          <div>{item.popularity.toFixed(1)}</div>
-          <div>{item.known_for_department}</div>
-        </div>
-    </div>
-      <div>
-      <h2 className='h6 text-center'>{item.title}{item.name}</h2>
-      </div>
-</div>
+          <Items item={item} key={index}/>
 
-     </Link>
-    </div>
     ) )}
     </div>:<Loading/>}
   
