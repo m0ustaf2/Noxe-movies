@@ -7,6 +7,7 @@ import PaginationComp from './../Pagination/PaginationComp';
 import Items from '../Items/Items';
 
 export default function() {
+  
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ let {trendingMovies}=useContext(MediaContext)
                 <title>Movies</title>
                 
             </Helmet>
+
        <div className="col-md-4">
         <div>
           <div className='brdr mb-3 w-25'></div>

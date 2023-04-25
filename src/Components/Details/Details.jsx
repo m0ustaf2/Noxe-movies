@@ -1,12 +1,24 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom'
 import Loading from '../Loading/Loading';
 import { Helmet } from 'react-helmet';
+import Slider from 'react-slick';
+import { MediaContext } from '../../Context/MediaStore';
 
 export default function Details() {
+  let{trendingMovies,trendingTvs,trendingPersons}=useContext(MediaContext)
+
+  var settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    autoplay:true,
+    arrows:false
+  };
   const [itemDetails, setItemDetails] = useState('')
   let params=useParams();
 
@@ -45,6 +57,17 @@ export default function Details() {
          <Link className="navbar-brand" to="/">
       <button className='btn btn-outline-info'>Return to Home</button>
       </Link>
+      <div className='my-3'>
+     <Slider {...settings} autoplaySpeed={3000}>
+     {trendingPersons.map((item)=>{
+    return  <div key={item.id}>
+      
+    <img height={400}  src={`https://image.tmdb.org/t/p/original${item.profile_path}`} className='w-100'  />
+    
+  </div>
+     })}
+    </Slider>
+     </div>
          </>:
         <>
          <h2>{itemDetails.title}{itemDetails.name}</h2>
@@ -65,17 +88,30 @@ export default function Details() {
           </p>
         
         <p className='text-muted my-3'>{itemDetails.overview}</p>
-         
+       
          <Link className="navbar-brand" to="/Noxe-movies">
       <button className='btn btn-outline-info'>Return to Home</button>
       </Link>
       {itemDetails.homepage?<Link target='_blank' to={itemDetails.homepage}>
          <button className='btn btn-outline-success mx-2'> More <i class="fa-solid fa-arrow-right"></i></button>
-         </Link>:""}
+         </Link>
          
+         :""}
+          <div className='my-3'>
+     <Slider {...settings} autoplaySpeed={3000}>
+     {trendingMovies.map((item)=>{
+    return  <div key={item.id}>
+      
+    <img  src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className='w-100 slid'  />
+    
+  </div>
+     })}
+    </Slider>
+     </div>
         </>
         }
         </>
+        
       </div>
     </div>:<Loading/> }
    </>
