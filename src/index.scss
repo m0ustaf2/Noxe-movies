@@ -22,7 +22,9 @@ a,a:hover{
     height:$borderHeight;
     background-color:$borderColor;
 }
-
+.cursor-pointer{
+  cursor: pointer;
+}
 .overlay
 {
     position:absolute;
@@ -131,6 +133,10 @@ img{
       margin-left: auto !important;
       margin-top: 3px;
     }
+    .slid{
+      height: 200px;
+  }
+  
 }
 
 

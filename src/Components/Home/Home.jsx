@@ -19,7 +19,7 @@ export default function Home() {
     autoplay:true,
     arrows:false
   };
-  // console.log(trendingMovies);
+  
   return (
     <>
     
@@ -37,7 +37,7 @@ export default function Home() {
      {trendingTvs.map((item)=>{
     return  <div key={item.id}>
       
-    <img height={500} src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className='w-100'  />
+    <img  height={500} src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className='w-100 cursor-pointer slid'  />
     
   </div>
      })}

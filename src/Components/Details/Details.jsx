@@ -14,8 +14,8 @@ export default function Details() {
   var settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     autoplay:true,
     arrows:false
   };
@@ -62,7 +62,7 @@ export default function Details() {
      {trendingPersons.map((item)=>{
     return  <div key={item.id}>
       
-    <img height={400}  src={`https://image.tmdb.org/t/p/original${item.profile_path}`} className='w-100'  />
+    <img height={300}  src={`https://image.tmdb.org/t/p/original${item.profile_path}`} className='w-100 cursor-pointer '  />
     
   </div>
      })}

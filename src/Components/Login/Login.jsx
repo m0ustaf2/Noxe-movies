@@ -3,14 +3,17 @@ import Joi from 'joi';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Login({saveUserData}) {
+  const notify = (msg,type) => {
+    toast[type](msg);
+  }
   
   const [user, setUser] = useState({
     'email':'',
     'password':''
   });
-  const [errorMsg, setErrorMsg] = useState('');
    const [errorsList, setErrorsList] = useState([]);
    const [isLoading,setIsLoading]=useState(false);
 
@@ -33,6 +36,7 @@ let {data}= await axios.post('https://sticky-note-fe.vercel.app/signin',user)
 console.log(data);
     if(data.message=='success')
     {
+  notify("success","success")
       localStorage.setItem('token',data.token);
       saveUserData();
     goToHome();
@@ -40,7 +44,7 @@ console.log(data);
 
     }
     else{
-      setErrorMsg(data.message);
+      notify(data.message,'error')
     setIsLoading(false)
 
     }
@@ -73,7 +77,6 @@ console.log(data);
   <h2>Login Form</h2>
   <form onSubmit={submitFormData}>
     <div className='input-data my-2'>
-  {errorMsg?<div className="alert alert-danger p-2">{errorMsg}</div>:""}
       <label htmlFor="email">Email</label>
       <input onChange={getInputValue} type="email" className='form-control  bg-transparent text-light my-2' name='email'/>
       {errorsList.filter((error)=>error.context.label=='first_name')[0]?<div className="alert alert-danger my-2">{errorsList.filter((error)=>error.context.label=='first_name')[0]?.message}</div>:''}

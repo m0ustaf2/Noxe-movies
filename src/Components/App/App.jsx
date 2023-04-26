@@ -14,6 +14,7 @@ import Register from './../Register/Register';
 import Tvshows from './../Tvshows/Tvshows';
 import { Offline } from 'react-detect-offline';
 import Disconnected from '../Disconnected/Disconnected';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
  let{userData,saveUserData,logout}= useContext(AuthContext)
@@ -38,7 +39,9 @@ function App() {
   ])
   return (
     <>
-    <Offline><Disconnected/></Offline>
+    <ToastContainer theme='colored'
+    style={{ marginTop:50 }}/>
+    {/* <Offline><Disconnected/></Offline> */}
 
      <RouterProvider router={routes} />
       

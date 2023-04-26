@@ -3,9 +3,13 @@ import Joi from 'joi';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 export default function Register() {
+  const notify = (msg,type) => {
+    toast[type](msg);
+  }
   const [user, setUser] = useState({
     'first_name':'',
     'last_name':'',
@@ -13,7 +17,6 @@ export default function Register() {
     'email':'',
     'password':''
   });
-  const [errorMsg, setErrorMsg] = useState('')
    const [errorsList, setErrorsList] = useState([])
    const [isLoading,setIsLoading]=useState(false);
   let navigate=useNavigate();
@@ -26,11 +29,12 @@ setErrorsList(validationResponse.error.details)
     }else{
 let {data}= await axios.post('https://sticky-note-fe.vercel.app/signup',user)
     if(data.message=='success'){
+  notify("success","success")
     goToLogin()
     setIsLoading(false)
     }
     else{
-      setErrorMsg(data.message)
+      notify(data.message,'error')
       setIsLoading(false)
     }
     }
@@ -64,10 +68,9 @@ let {data}= await axios.post('https://sticky-note-fe.vercel.app/signup',user)
                 
             </Helmet>
   <div className=' w-75 m-auto py-5'>
-  <h2 className='text-center'>Registration Now : </h2>  
+  <h2 className='text-center'>Register Now : </h2>  
   <form onSubmit={submitFormData}>
     <div className='input-data my-2'>
-  {errorMsg?<div className="alert alert-danger p-2">{errorMsg}</div>:""}
       <label htmlFor="first_name">First Name</label>
       <input onChange={getInputValue} type="text" className='form-control bg-transparent text-light my-2' name='first_name'/>
       {errorsList.filter((error)=>error.context.label=='first_name')[0]?<div className="alert alert-danger my-2">{errorsList.filter((error)=>error.context.label=='first_name')[0]?.message}</div>:''}

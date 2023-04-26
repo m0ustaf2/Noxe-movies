@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 import { MediaContext } from '../../Context/MediaStore';
 import Loading from '../Loading/Loading';
 import PaginationComp from '../Pagination/PaginationComp';

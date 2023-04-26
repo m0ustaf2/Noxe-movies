@@ -10,11 +10,10 @@ export default function Profile({userData}) {
                 <title>Profile</title>
                 
             </Helmet>
-     <div className={`profile w-75  py-5 my-5 m-auto text-start  ${styles.bgProfile}`}>
+     <div className={`profile w-75 p-3  py-5 my-5 m-auto text-start  ${styles.bgProfile}`}>
          <h2 className='text-center mb-5'>Welcome,{userData?.first_name}</h2>
         <h3>Name : {userData?.first_name} {userData?.last_name}</h3>
         <h3 className='my-4'>Age : {userData?.age}</h3>
-        <h3>Email: {userData?.email}</h3>
      </div>
     </>
   )

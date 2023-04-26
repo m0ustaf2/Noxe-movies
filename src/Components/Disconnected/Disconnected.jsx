@@ -5,7 +5,8 @@ export default function Disconnected() {
     <>
     <div className="d-flex justify-content-center align-items-center">
     <div className="text-center text-danger alert alert-warning offline ">
-    You're offline right now!! Check your connection.
+    <i className="fa-solid fa-ban"></i>  Yor connection is not stable
+    
     </div>
     </div>
     </>
