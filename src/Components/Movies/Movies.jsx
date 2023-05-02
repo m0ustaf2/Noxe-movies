@@ -20,7 +20,11 @@ let {trendingMovies}=useContext(MediaContext)
   return (
  <>
 
- { !isLoading ? <div className="row py-4 gy-3">
+ { !isLoading ?
+ 
+ <div className="row py-4 gy-3">
+    <PaginationComp/>
+
           <Helmet>
                 <meta charSet="utf-8" />
                 <title>Movies</title>
@@ -42,7 +46,6 @@ let {trendingMovies}=useContext(MediaContext)
      
     ) )}
     </div>:<Loading/>}    
-    <PaginationComp/>
 
  </>
   )

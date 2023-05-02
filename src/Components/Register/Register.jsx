@@ -46,7 +46,7 @@ let {data}= await axios.post('https://sticky-note-fe.vercel.app/signup',user)
       last_name:Joi.string().alphanum().required().min(2).max(10),
       age:Joi.number().required().min(20).max(80),
       email:Joi.string().required().email({tlds:{allow:['com','net','eg','gov','edu']}}),
-      password:Joi.string().required().pattern(new RegExp(/[A-Z][a-z]{3,7}/))
+      password:Joi.string().required().pattern(new RegExp(/^[A-Z][a-z0-9]{6,10}$/))
 
     })
     return schema.validate(user,{abortEarly:false});
@@ -68,7 +68,7 @@ let {data}= await axios.post('https://sticky-note-fe.vercel.app/signup',user)
                 
             </Helmet>
   <div className=' w-75 m-auto py-5'>
-  <h2 className='text-center'>Register Now : </h2>  
+  <h2>Register Now : </h2>  
   <form onSubmit={submitFormData}>
     <div className='input-data my-2'>
       <label htmlFor="first_name">First Name</label>
@@ -94,10 +94,10 @@ let {data}= await axios.post('https://sticky-note-fe.vercel.app/signup',user)
       <label htmlFor="password">Password</label>
       <input onChange={getInputValue} type="password" className='form-control bg-transparent text-light my-2' name='password'/>
       
-      {errorsList.filter(error =>error.context.label == "password")[0]?<div className='alert alert-danger'>Password should start with capital letter followed by 3 small letter</div>:''}
+      {errorsList.filter(error =>error.context.label == "password")[0]?<div className='alert alert-danger'>password must start with uppercase and at least 6 characters & special character not allowed....</div>:''}
     </div>
 
-    <button className='btn btn-info float-end my-3'>
+    <button className='btn btn-outline-info float-end my-3'>
     {isLoading== true ?<i className='fas fa-spinner fa-spin'></i>:'Register'}
     </button>
     <div className="clear-fix"></div>

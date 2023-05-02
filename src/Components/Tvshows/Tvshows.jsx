@@ -28,6 +28,8 @@ let {trendingTvs}=useContext(MediaContext)
                 
             </Helmet>
     {!isLoading?<div className="row py-4 gy-3">
+<PaginationComp/>
+
        <div className="col-md-4">
         <div>
           <div className='brdr mb-3 w-25'></div>
@@ -43,7 +45,6 @@ let {trendingTvs}=useContext(MediaContext)
      
     ) )}
     </div>:<Loading/>}
-<PaginationComp/>
   
 
     </>

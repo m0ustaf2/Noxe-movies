@@ -89,7 +89,7 @@ console.log(data);
 
     </div>
 
-    <button className='btn btn-info float-end my-3'>
+    <button className='btn btn-outline-info float-end my-3'>
       {isLoading== true ?<i className='fas fa-spinner fa-spin'></i>:'Login'}
     </button>
     <div className="clear-fix"></div>

@@ -39,9 +39,10 @@ function App() {
   ])
   return (
     <>
-    <ToastContainer theme='colored'
+    <ToastContainer theme='dark'
+    autoClose={1000}
     style={{ marginTop:50 }}/>
-    {/* <Offline><Disconnected/></Offline> */}
+    <Offline><Disconnected/></Offline>
 
      <RouterProvider router={routes} />
       

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Offline } from 'react-detect-offline';
 import { Helmet } from 'react-helmet';
 import Disconnected from './../Disconnected/Disconnected';
@@ -7,18 +7,43 @@ import { MediaContext } from '../../Context/MediaStore';
 import Items from '../Items/Items';
 import Loading from '../Loading/Loading';
 import Slider from "react-slick";
+import axios from 'axios';
 
 
 export default function Home() {
   let{trendingMovies,trendingTvs,trendingPersons}=useContext(MediaContext)
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);},[])
+
   var settings = {
     infinite: true,
-    speed: 500,
+    speed: 3000,
     slidesToShow: 4,
     slidesToScroll: 4,
     autoplay:true,
-    arrows:false
+    arrows:false,
+    lazyLoad: true,
+    cssEase: "linear",
+    dots: false,
+  
   };
+  const [trends, settrends] = useState([])
+  
+
+  let gettrends=async()=>{
+    let {data}=await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=4507261fca454568e6ba45d3e6be7831`)
+    settrends(data.results);
+    // console.log(data.results);
+  }
+
+  useEffect(() => {
+    gettrends()
+  }, [])
   
   return (
     <>
@@ -34,10 +59,10 @@ export default function Home() {
     <>
      <div className='my-2'>
      <Slider {...settings} autoplaySpeed={3000}>
-     {trendingTvs.map((item)=>{
+     {trends?.filter(ele=> ele.poster_path !==null ).map((item)=>{
     return  <div key={item.id}>
       
-    <img  height={500} src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className='w-100 cursor-pointer slid'  />
+    <img  height={500} src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className='w-100  cursor-pointer slid'  />
     
   </div>
      })}

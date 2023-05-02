@@ -59,7 +59,7 @@ export default function Details() {
       </Link>
       <div className='my-3'>
      <Slider {...settings} autoplaySpeed={3000}>
-     {trendingPersons.map((item)=>{
+     {trendingPersons.filter(ele=> ele.profile_path !==null ).map((item)=>{
     return  <div key={item.id}>
       
     <img height={300}  src={`https://image.tmdb.org/t/p/original${item.profile_path}`} className='w-100 cursor-pointer '  />
@@ -93,7 +93,7 @@ export default function Details() {
       <button className='btn btn-outline-info'>Return to Home</button>
       </Link>
       {itemDetails.homepage?<Link target='_blank' to={itemDetails.homepage}>
-         <button className='btn btn-outline-success mx-2'> More <i class="fa-solid fa-arrow-right"></i></button>
+         <button className='btn btn-outline-success mx-2'> More <i className="fa-solid fa-arrow-right"></i></button>
          </Link>
          
          :""}
