@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthStore';
 import Details from '../Details/Details';
 import MasterLayout from '../MasterLayout/MasterLayout';
@@ -19,21 +19,21 @@ import { ToastContainer } from 'react-toastify';
 function App() {
  let{userData,saveUserData,logout}= useContext(AuthContext)
   
-  let routes=createBrowserRouter([
+  let routes=createHashRouter([
     {
     path:"/",
     element:<MasterLayout userData={userData} logout={logout}/>,
     errorElement:<Notfound/>,
     children:[
-      {index:true,element:<ProtectedRoute  userData={userData}><Home/></ProtectedRoute>},
-      {path:'/Noxe-movies',element:<ProtectedRoute  userData={userData}><Home/></ProtectedRoute>},
-      {path:'movies',element:<ProtectedRoute  userData={userData}><Movies/></ProtectedRoute>},
-      {path:'tvshows',element:<ProtectedRoute userData={userData}><Tvshows/></ProtectedRoute>},
-      {path:'profile',element:<ProtectedRoute userData={userData}><Profile userData={userData}/></ProtectedRoute>},
-      {path:'details/:id/:mediaType',element:<ProtectedRoute userData={userData}><Details userData={userData}/></ProtectedRoute>},
-      {path:'register',element:<Register/>},
-      {path:'people',element:<ProtectedRoute  userData={userData}><People/></ProtectedRoute>},
-      {path:'login',element:<Login saveUserData={saveUserData}/>},
+      {index:true,element:<Home/>},
+      {path:'/Noxe-movies',element:<Home/>},
+      {path:'movies',element:<Movies/>},
+      {path:'tvshows',element:<Tvshows/>},
+      {path:'profile',element:<Profile/>},
+      {path:'details/:id/:mediaType',element:<Details/>},
+      // {path:'register',element:<Register/>},
+      {path:'people',element:<People/>},
+      // {path:'login',element:<Login saveUserData={saveUserData}/>},
     ],
   }
   ])

@@ -33,6 +33,7 @@ export default function Home() {
   
   };
   const [trends, settrends] = useState([])
+  const [pros, setPros] = useState([0])
   
 
   let gettrends=async()=>{
@@ -40,14 +41,14 @@ export default function Home() {
     settrends(data.results);
     // console.log(data.results);
   }
-
+  
   useEffect(() => {
     gettrends()
   }, [])
   
   return (
     <>
-    
+   
    
      <Helmet>
                 <meta charSet="utf-8" />
@@ -68,6 +69,8 @@ export default function Home() {
      })}
     </Slider>
      </div>
+
+     
      <div className="row py-4 gy-3">
     
     <div className="col-md-4">
@@ -118,11 +121,7 @@ export default function Home() {
  ) )}
  </div>
 </>:<Loading/>}
-<PaginationComp/>
-
-
-           
-   
+<PaginationComp/>   
     </>
   )
 }

@@ -14,6 +14,7 @@ export default function Login({saveUserData}) {
     'email':'',
     'password':''
   });
+
    const [errorsList, setErrorsList] = useState([]);
    const [isLoading,setIsLoading]=useState(false);
 
@@ -21,6 +22,7 @@ export default function Login({saveUserData}) {
   let goToHome=()=>{
     navigate('/Noxe-movies');
   }
+  
   let submitFormData= async (e)=>{
     e.preventDefault();
     setIsLoading(true);
@@ -39,13 +41,13 @@ console.log(data);
   notify("success","success")
       localStorage.setItem('token',data.token);
       saveUserData();
-    goToHome();
-    setIsLoading(false)
+      goToHome();
+      setIsLoading(false)
 
     }
     else{
       notify(data.message,'error')
-    setIsLoading(false)
+      setIsLoading(false)
 
     }
     }

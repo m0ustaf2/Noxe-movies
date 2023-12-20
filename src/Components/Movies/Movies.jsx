@@ -23,7 +23,6 @@ let {trendingMovies}=useContext(MediaContext)
  { !isLoading ?
  
  <div className="row py-4 gy-3">
-    <PaginationComp/>
 
           <Helmet>
                 <meta charSet="utf-8" />
@@ -44,7 +43,8 @@ let {trendingMovies}=useContext(MediaContext)
      {trendingMovies.slice(0,20).filter(ele=> ele.poster_path !==null ).map((item,index)=>(
      <Items item={item} key={index}/>
      
-    ) )}
+     ) )}
+<PaginationComp/>
     </div>:<Loading/>}    
 
  </>
