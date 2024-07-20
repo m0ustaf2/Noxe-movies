@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 import { useState } from 'react';
 import  axios  from 'axios';
-export default function Navbar({userData,logout}) {
+import { AuthContext } from '../../Context/AuthStore';
+export default function Navbar() {
+ let {userData,logout}= useContext(AuthContext)
   const [name, setName] = useState("")
   const [trendingMovies, setMovies] = useState([])
+  
   async function getDataFromApi(name){
     let {data}=await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=67cf6dbae13ea6866f23d0336f15d01d&language=en-US&query=${name}&page=1&include_adult=false`);
     setMovies(data.results);
-    console.log(trendingMovies);
   }
 function search(e)
 {
@@ -35,6 +37,7 @@ function clearSearch(e)
       <span className="navbar-toggler-icon fa-beat"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    {userData?  
     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
           <NavLink className={({isActive})=>
@@ -45,26 +48,7 @@ function clearSearch(e)
         <li className="nav-item">
           <NavLink className={({isActive})=>
         isActive?"bg-info rounded nav-link" : "nav-link"  
-        } to="movies">Movies</NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
         } to="tvshows">Tv shows</NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
-        } to="people">People</NavLink>
-        </li>
-      </ul>
-    {/* {userData?  
-    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
-        }
-           to="/Noxe-movies">Home</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className={({isActive})=>
@@ -74,15 +58,10 @@ function clearSearch(e)
         <li className="nav-item">
           <NavLink className={({isActive})=>
         isActive?"bg-info rounded nav-link" : "nav-link"  
-        } to="tvshows">Tv shows</NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className={({isActive})=>
-        isActive?"bg-info rounded nav-link" : "nav-link"  
         } to="people">People</NavLink>
         </li>
       </ul>
-      :''} */}
+      :''}
 
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
       <div className='social-media  d-flex align-items-center'>
@@ -103,13 +82,12 @@ function clearSearch(e)
         </div>
         
 
-        <input onChange={search} className="form-control mx-1" type="search" placeholder="Search for movies" aria-label="Search"/>
 
-      {/* {userData?
+      {userData?
      <li className="nav-item">
       <div className='d-flex align-items-center'>
         <input onChange={search} className="form-control mx-1" type="search" placeholder="Search for movies" aria-label="Search"/>
-        <NavLink className="btn btn-outline-success me-2 " to='profile'>Hello,{userData.first_name}</NavLink>
+        <NavLink className="btn btn-outline-success me-2 " to='profile'>Hello,{userData.name}</NavLink>
         <NavLink className="btn btn-outline-danger nav-link me-2 p-1" to="login" onClick={logout}>
       Logout
       </NavLink>
@@ -127,7 +105,7 @@ function clearSearch(e)
         } to="register">Register</NavLink>
         </li>
      </>
-    } */}
+    }
         
      
       </ul>
